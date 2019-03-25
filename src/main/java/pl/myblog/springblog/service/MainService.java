@@ -20,7 +20,13 @@ public class MainService {
     public List<User> getAllUsers(){
         return userRepository.findAll();    // SELECT * FROM user;
     }
-    // END-POINT zwracający użytkownika
-    
+    // END-POINT zwracający użytkownika o zadanym adresie email
+    public User getUserByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
+    // END-POINT zwracający liczbę użytkowników
+    public Long countAllUsers(){
+        return userRepository.count();
+    }
 
 }
