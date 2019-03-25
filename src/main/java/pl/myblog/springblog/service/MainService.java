@@ -20,6 +20,7 @@ public class MainService {
     public List<User> getAllUsers(){
         return userRepository.findAll();    // SELECT * FROM user;
     }
-
+    // END-POINT zwracający użytkownika
+    
 
 }
