@@ -39,5 +39,9 @@ public class User {
             name = "user_role",                                 // nawa tabelki N:M
             joinColumns = @JoinColumn(name = "user_id"),        // nazwa kolumny 1
             inverseJoinColumns = @JoinColumn(name = "role_id")) // nazwa kolumny 2
-    Set<Role> roles = new HashSet<>();                          // zbiór ról
+    private Set<Role> roles = new HashSet<>();                          // zbiór ról
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    private Set<Post> posts = new HashSet<>();
+
 }
