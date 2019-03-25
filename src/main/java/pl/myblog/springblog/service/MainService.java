@@ -43,7 +43,7 @@ public class MainService {
     }
     // END-POINT usuwający użytkownika po id
     public void deleteUserUserById(Long id){
-        userRepository.delete(userRepository.getOne(id));
+        userRepository.deleteById(id);
     }
 
 }

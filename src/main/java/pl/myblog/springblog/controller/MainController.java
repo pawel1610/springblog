@@ -49,6 +49,6 @@ public class MainController {
     @GetMapping("/users/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id){
         mainService.deleteUserUserById(id);
-        return "Zmieniono aktywność";
+        return "Usunięto";
     }
 }
