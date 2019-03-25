@@ -33,4 +33,22 @@ public class MainController {
     public Long countAllUsers(){
         return mainService.countAllUsers();
     }
+    @GetMapping("/users/update/{id}")
+    public String updateUser(@PathVariable("id") Long id){
+        mainService.updateUserActivityById(id);
+        return "Zmieniono aktywność";
+    }
+    @GetMapping("/login/{email}/{password}")
+    public String loginCheck(
+            @PathVariable("email") String email,
+            @PathVariable("password") String password){
+        // zwraca usera lub null
+        User user = mainService.logIn(email, password);
+        return (user != null) ? user.toString() : "Błąd logowania" ;
+    }
+    @GetMapping("/users/delete/{id}")
+    public String deleteUser(@PathVariable("id") Long id){
+        mainService.deleteUserUserById(id);
+        return "Zmieniono aktywność";
+    }
 }

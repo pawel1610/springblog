@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.myblog.springblog.model.User;
 import pl.myblog.springblog.repository.UserRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -27,6 +28,22 @@ public class MainService {
     // END-POINT zwracający liczbę użytkowników
     public Long countAllUsers(){
         return userRepository.count();
+    }
+    // END-POINT zmieniający aktywność użytkownika
+    public void updateUserActivityById(Long id){
+        // SELECT * FROM user Where id = ?
+        User user = userRepository.getOne(id);
+        user.setActive(!user.getActive());
+        // UPDATE user
+        userRepository.save(user);
+    }
+    // END-POINT zwracający wynik logowania
+    public User logIn(String email, String password){
+        return userRepository.findByEmailAndPassword(email,password);
+    }
+    // END-POINT usuwający użytkownika po id
+    public void deleteUserUserById(Long id){
+        userRepository.delete(userRepository.getOne(id));
     }
 
 }
