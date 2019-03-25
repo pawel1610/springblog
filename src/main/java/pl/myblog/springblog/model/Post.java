@@ -1,6 +1,6 @@
 package pl.myblog.springblog.model;
 
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -31,4 +31,10 @@ public class Post {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "post")
     private Set<Comment> comments = new HashSet<>();
 
+    public Post(String title, String content, PostCategory category, User user) {
+        this.title = title;
+        this.content = content;
+        this.category = category;
+        this.user = user;
+    }
 }

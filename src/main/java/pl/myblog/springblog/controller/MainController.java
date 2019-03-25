@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import pl.myblog.springblog.model.Post;
 import pl.myblog.springblog.model.User;
 import pl.myblog.springblog.service.MainService;
 import java.util.List;
@@ -48,7 +49,15 @@ public class MainController {
     }
     @GetMapping("/users/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id){
-        mainService.deleteUserUserById(id);
+        mainService.deleteUserById(id);
         return "Usunięto";
+    }
+    @GetMapping("/post/add/{id}/{title}/{content}")
+    public String addPost(
+            @PathVariable("id") Long id,
+            @PathVariable("title") String title,
+            @PathVariable("content") String content){
+        mainService.addPost(id,title, content);
+        return "DODANO POSTA";
     }
 }

@@ -2,7 +2,10 @@ package pl.myblog.springblog.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.myblog.springblog.model.Post;
+import pl.myblog.springblog.model.PostCategory;
 import pl.myblog.springblog.model.User;
+import pl.myblog.springblog.repository.PostRepository;
 import pl.myblog.springblog.repository.UserRepository;
 
 import java.time.LocalDateTime;
@@ -12,10 +15,11 @@ import java.util.List;
 public class MainService {
     // Dependency Injection
     UserRepository userRepository;
-
-    @Autowired      // wstrzyknięcie zależności przez konstruktor
-    public MainService(UserRepository userRepository) {
+    PostRepository postRepository;
+    @Autowired
+    public MainService(UserRepository userRepository, PostRepository postRepository) {
         this.userRepository = userRepository;
+        this.postRepository = postRepository;
     }
 
     public List<User> getAllUsers(){
@@ -42,8 +46,18 @@ public class MainService {
         return userRepository.findByEmailAndPassword(email,password);
     }
     // END-POINT usuwający użytkownika po id
-    public void deleteUserUserById(Long id){
+    public void deleteUserById(Long id){
         userRepository.deleteById(id);
+    }
+    // END-POINT utworzenie nowego posta
+    public void addPost(Long id, String title, String content){
+        // szukamy usera po ID
+        User user = userRepository.getOne(id);
+        // utwórz obiekt posta
+        Post post = new Post(title, content, PostCategory.PROGRAMOWANIE, user);
+        // dodaj posta do zbioru postów obkietu user
+        user.addPost(post);
+        postRepository.save(post);
     }
 
 }
