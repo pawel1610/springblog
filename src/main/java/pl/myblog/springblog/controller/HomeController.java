@@ -17,14 +17,18 @@ public class HomeController {
     public HomeController(PostService postService) {
         this.postService = postService;
     }
-    @GetMapping("/")            // mapowany adres
-    public String home(Model model){       // nazwa metody wywoływanej dla URL "/"
+    @GetMapping("/")                                            // mapowany adres
+    public String home(Model model){                            // nazwa metody wywoływanej dla URL "/"
         List<Post> posts = postService.getAllPosts();
         List<Post> sortedPosts = posts
                                     .stream()                                                               // zamiana kolekcji na strumień
                                     .sorted((p1, p2) -> p2.getDate_added().compareTo(p1.getDate_added()))   // sortowanie po dacie DESC
                                     .collect(Collectors.toList());                                          // zapis do kolekcji posortowanych postów
-        // przekazanie obiektu posts do html i w html też będzie nazywał się posts
+        // II metoda
+        // List<Post> sortedPosts = postService.getAllPosts()
+        //                                          .stream()
+        //                                          .sorted(Comparator.comparing(Post::getDate_added).reversed())
+        //                                          .collect(Collectors.toList());
         model.addAttribute("posts", sortedPosts);
         return "index";         // nazwa zwracanego widoku HTML
 
