@@ -41,7 +41,7 @@ public class Post {
     public Post() {
     }
 
-    public String getUser() {
-        return "Name:" + user.getName();
-    }
+//    public String getUser() {
+//        return "Name:" + user.getName();
+//    }
 }
