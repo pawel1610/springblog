@@ -5,9 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import pl.myblog.springblog.model.Post;
 import pl.myblog.springblog.service.PostService;
+
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,7 +58,14 @@ public class HomeController {
         model.addAttribute("post", post);
         return "updatePost";
     }
-
+    @PostMapping("/allposts/{id}")
+    public String updatedPost(@ModelAttribute @Valid Post post, Model model){
+        // zapis przez serwis
+        Long id = post.getId();
+        Post updatedPost = postService.updatePost(id, post);
+        model.addAttribute("post", updatedPost);
+        return "post";
+    }
 
     @GetMapping("/contact")
     public String contact(){

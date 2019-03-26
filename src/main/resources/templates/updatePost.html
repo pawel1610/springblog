@@ -71,7 +71,7 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
         <!--FORMULARZ Z CONTACT-->
-        <form th:action="@{'/allpost/' + ${post.getId()}}" th:method="post" th:object="${post}" name="sentMessage" id="contactForm" novalidate>
+        <form th:action="@{'/allposts/' + ${post.getId()}}" th:method="post" th:object="${post}" name="sentMessage" id="contactForm" novalidate>
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
               <label>Title</label>

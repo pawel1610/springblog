@@ -29,8 +29,14 @@ public class PostService {
     }
     // metoda usuwająca posta po id
     public void deletePostById(Long id){
-
         postRepository.deleteById(id);
+    }
+    // metoda aktualizująca post w bazie danych
+    public Post updatePost(Long id, Post post){
+        Post updatePost = postRepository.getOne(id);
+        updatePost.setTitle(post.getTitle());
+        updatePost.setContent(post.getContent());
+        return postRepository.save(updatePost);
     }
 
 }
