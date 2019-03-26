@@ -10,4 +10,8 @@ public class HomeController {
     public String home(){       // nazwa metody wywoływanej dla URL "/"
         return "index";         // nazwa zwracanego widoku HTML
     }
+    @GetMapping("/contact")
+    public String contact(){
+        return "contact";
+    }
 }
