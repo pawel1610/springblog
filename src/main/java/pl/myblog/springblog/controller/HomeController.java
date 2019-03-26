@@ -1,5 +1,6 @@
 package pl.myblog.springblog.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,6 +48,13 @@ public class HomeController {
         postService.deletePostById(id);
         return "redirect:/";
     }
+    @GetMapping("/updatepost/{id}")
+    public String updatePost(@PathVariable("id") Long id, Model model){
+        Post post = postService.getPostById(id);
+        model.addAttribute("post", post);
+        return "updatePost";
+    }
+
 
     @GetMapping("/contact")
     public String contact(){

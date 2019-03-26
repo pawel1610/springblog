@@ -25,9 +25,11 @@ public class Post {
     private PostCategory category;
     private LocalDateTime date_added = LocalDateTime.now();
 
-    // FetchType.LAZY
+    // FetchType.LAZY       - dane zostaną odczytane z bazy dopiero w momencie gdy nastąpi odwołanie do obiektu
+    // FetchType.EAGER      - dane zostaną odczytane z bazy natychmiast po utworzeniu obiektu nadrzędnego
     // CascadeType.PERSIST
     // CascadeType.MERGE
+    //
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
