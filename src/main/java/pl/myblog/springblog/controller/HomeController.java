@@ -21,7 +21,13 @@ public class HomeController {
         // przekazanie obiektu posts do html i w html też będzie nazywał się posts
         model.addAttribute("posts", posts);
         return "index";         // nazwa zwracanego widoku HTML
+
     }
+    @GetMapping("/allposts/{id}")
+    public String getOnePost(){
+        return "post";
+    }
+
     @GetMapping("/contact")
     public String contact(){
         return "contact";
