@@ -95,7 +95,4 @@ public class Post {
         this.comments = comments;
     }
 
-    //    public String getUser() {
-//        return "Name:" + user.getName();
-//    }
 }

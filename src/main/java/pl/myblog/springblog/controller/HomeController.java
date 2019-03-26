@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import pl.myblog.springblog.model.Post;
 import pl.myblog.springblog.service.PostService;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class HomeController {
@@ -19,8 +20,12 @@ public class HomeController {
     @GetMapping("/")            // mapowany adres
     public String home(Model model){       // nazwa metody wywoływanej dla URL "/"
         List<Post> posts = postService.getAllPosts();
+        List<Post> sortedPosts = posts
+                                    .stream()                                                               // zamiana kolekcji na strumień
+                                    .sorted((p1, p2) -> p2.getDate_added().compareTo(p1.getDate_added()))   // sortowanie po dacie DESC
+                                    .collect(Collectors.toList());                                          // zapis do kolekcji posortowanych postów
         // przekazanie obiektu posts do html i w html też będzie nazywał się posts
-        model.addAttribute("posts", posts);
+        model.addAttribute("posts", sortedPosts);
         return "index";         // nazwa zwracanego widoku HTML
 
     }

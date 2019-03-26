@@ -57,8 +57,8 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
             <h1 th:text="${post.getTitle()}" >title</h1>
-            <span th:text="${post.getUser().getName()}" class="meta">author</span>
-            <span th:field="${post.getCategory()}" class="meta">category</span>
+            <span th:text="${post.getUser().getName() + ' ' + post.getUser().getLastname()}" class="meta">author</span>
+            <span th:text="${post.getCategory()}" class="meta">category</span>
             <span th:text="${post.getDate_added() + ' '}" class="meta">date</span>
           </div>
         </div>
