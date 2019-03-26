@@ -1,6 +1,8 @@
 package pl.myblog.springblog.model;
 
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -23,7 +25,10 @@ public class Post {
     private PostCategory category;
     private LocalDateTime date_added = LocalDateTime.now();
 
-    @ManyToOne
+    // FetchType.LAZY
+    // CascadeType.PERSIST
+    // CascadeType.MERGE
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 

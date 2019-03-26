@@ -41,6 +41,12 @@ public class HomeController {
         model.addAttribute("post", post);
         return "post";
     }
+    @GetMapping("/deletepost/{id}")
+    public String deletePost(@PathVariable("id") Long id){
+        // usunięcie posta
+        postService.deletePostById(id);
+        return "redirect:/";
+    }
 
     @GetMapping("/contact")
     public String contact(){
