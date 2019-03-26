@@ -76,6 +76,10 @@
           </a>
           <p th:text="${'Posted by ' + post.getUser().getName()}" class="post-meta"> author </p>
           <p th:text="${'Publication date ' + post.getDate_added()}" class="post-meta"> date </p>
+          <div class="clearfix">
+            <a class="btn btn-primary float-right" th:href="@{'deletepost/' + ${post.getId()}}">Delete </a>
+            <a class="btn btn-primary float-right" th:href="@{'updatepost/' + ${post.getId()}}">Update </a>
+          </div>
           <hr>
         </div>
         <!-- Pager -->
