@@ -56,10 +56,10 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
-            <h1>title</h1>
-            <span class="meta">author</span>
-            <span class="meta">category</span>
-            <span class="meta">date</span>
+            <h1 th:text="${post.getTitle()}" >title</h1>
+            <span th:text="${post.getUser().getName()}" class="meta">author</span>
+            <span th:field="${post.getCategory()}" class="meta">category</span>
+            <span th:text="${post.getDate_added() + ' '}" class="meta">date</span>
           </div>
         </div>
       </div>
@@ -69,7 +69,7 @@
   <article>
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
+        <div th:text="${post.getContent()}" class="col-lg-8 col-md-10 mx-auto">
           content
         </div>
       </div>

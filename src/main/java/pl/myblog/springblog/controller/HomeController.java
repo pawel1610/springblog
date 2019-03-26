@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import pl.myblog.springblog.model.Post;
 import pl.myblog.springblog.service.PostService;
 import java.util.List;
@@ -24,7 +25,11 @@ public class HomeController {
 
     }
     @GetMapping("/allposts/{id}")
-    public String getOnePost(){
+    public String getOnePost(
+            @PathVariable("id") Long id,
+            Model model){
+        Post post = postService.getPostById(id);
+        model.addAttribute("post", post);
         return "post";
     }
 

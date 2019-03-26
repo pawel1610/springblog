@@ -1,5 +1,6 @@
 package pl.myblog.springblog.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.myblog.springblog.model.Post;
@@ -17,6 +18,9 @@ public class PostService {
     public List<Post> getAllPosts(){
         return postRepository.findAll();
     }
-
+    // metoda zwracająca post po id
+    public Post getPostById(long id){
+        return postRepository.getOne(id);
+    }
 
 }
