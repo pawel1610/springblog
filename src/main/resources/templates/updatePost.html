@@ -79,11 +79,14 @@
               <p class="help-block text-danger"></p>
             </div>
           </div>
-          <div class="control-group">
-            <div class="form-group floating-label-form-group controls">
-              <label>Category</label>
-              <select th:object="${categories}">
-                <option th:each="category : ${categories}" th:value="${category.ordinal()}" th:text="${category.name()}"></option>
+          <div class="control-group">      <!--class="control-group"-->
+            <div class="form-group floating-label-form-group controls" >
+              <!--<label>Category</label>-->
+              <select th:field="*{category}">
+                <option th:each="c : ${categories}"
+                        th:value="${categories.get(c.ordinal())}"
+                        th:text="${c.name()}">
+                </option>
               </select>
             </div>
           </div>
@@ -101,8 +104,6 @@
           </div>
         </form>
         </div>
-
-      <!--XXXXXXXXXXXXXXXXXXXXXXxx-->
       </div>
     </div>
   </article>
