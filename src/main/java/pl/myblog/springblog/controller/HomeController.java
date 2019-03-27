@@ -6,6 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -77,7 +78,8 @@ public class HomeController {
 
     @GetMapping("/addpost")
     public String addPost(Model model){
-        List<PostCategory> categories = new ArrayList<>(Arrays.asList(PostCategory.values()));
+        List<PostCategory> categories =
+                new ArrayList<>(Arrays.asList(PostCategory.values()));
         model.addAttribute("post", new PostDto());
         model.addAttribute("categories", categories);
         return "addpostForm";
@@ -85,12 +87,17 @@ public class HomeController {
     @PostMapping("/addpost")
     public String addPost(
             @ModelAttribute("post") @Valid PostDto postDto,
+            BindingResult bindingResult,
             Authentication auth){
+        if(bindingResult.hasErrors()){
+            return "addpostForm";
+        }
         // z obiekut auth -> spring framerork sprawdzam dane autoryzacji
         UserDetails principal = (UserDetails) auth.getPrincipal();
         String loggedEmail = principal.getUsername();
         // zapisz użytkownika do pola user z posta i utwórz posta
-
+        System.out.println("Utworzono post: " +
+                postService.createPostByUser(postDto,loggedEmail));
         return "redirect:/";
     }
 
