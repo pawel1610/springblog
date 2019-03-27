@@ -37,5 +37,9 @@ public class UserController {
         System.out.println("Zarejestrowano: " + userService.addUser(userDto));
         return "redirect:/";
     }
-
+    // logowanie -> wyświetlenie widoku HTML i oddanie w zarządzanie WebSecurityConfig
+    @GetMapping("/login")
+    public String login(){
+        return "loginForm";
+    }
 }
