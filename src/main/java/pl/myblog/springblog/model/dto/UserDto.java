@@ -12,15 +12,15 @@ import javax.validation.constraints.Pattern;
 @Data
 public class UserDto {
 
-    @NotBlank
+    @NotBlank(message = "Insert your name")
     private String name;
-    @NotBlank
+    @NotBlank(message = "Insert your lastname")
     private String lastname;
-    @NotBlank
-    @Email
+    @NotBlank(message = "Insert your emial")
+    @Email(message = "Your email is not valid")
     private String email;
-    @Length(min = 6)
-    @Pattern(regexp = "([A-Z]+.*[0-9]+|[0-9]+.*[A-Z])")
+    @Length(min = 6, message = "Your password requires at least 6 characters")
+    @Pattern(regexp = "([A-Z]+.*[0-9]+|[0-9]+.*[A-Z])", message = "Your password must have one capital letter and one digit")
     private String password;
-    
+
 }
