@@ -2,6 +2,8 @@ package pl.myblog.springblog.controller;
 
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.myblog.springblog.model.Post;
 import pl.myblog.springblog.model.PostCategory;
+import pl.myblog.springblog.model.dto.PostDto;
 import pl.myblog.springblog.service.PostService;
 
 import javax.validation.Valid;
@@ -72,8 +75,32 @@ public class HomeController {
         return "post";
     }
 
+    @GetMapping("/addpost")
+    public String addPost(Model model){
+        List<PostCategory> categories = new ArrayList<>(Arrays.asList(PostCategory.values()));
+        model.addAttribute("post", new PostDto());
+        model.addAttribute("categories", categories);
+        return "addpostForm";
+    }
+    @PostMapping("/addpost")
+    public String addPost(
+            @ModelAttribute("post") @Valid PostDto postDto,
+            Authentication auth){
+        // z obiekut auth -> spring framerork sprawdzam dane autoryzacji
+        UserDetails principal = (UserDetails) auth.getPrincipal();
+        String loggedEmail = principal.getUsername();
+        // zapisz użytkownika do pola user z posta i utwórz posta
+
+        return "redirect:/";
+    }
+
+
     @GetMapping("/contact")
     public String contact(){
         return "contact";
     }
+
+
+
+
 }
