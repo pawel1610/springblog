@@ -1,6 +1,7 @@
 package pl.myblog.springblog.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,15 +23,17 @@ public class UserController {
 
     // przejście na stronę formularza i przesłanie parametrów metodą POST
     @GetMapping("/register")
-    public String register(Model model){
+    public String register(Model model, Authentication auth){
         model.addAttribute("user", new UserDto());
+        model.addAttribute("auth",auth);
         return "registerForm";
     }
     // odbiór prarametrów przesłanych przez formularz metodą POST
     @PostMapping("/register")
-    public String register(@ModelAttribute("user") @Valid UserDto userDto, BindingResult bindingResult){
+    public String register(@ModelAttribute("user") @Valid UserDto userDto, BindingResult bindingResult, Model model,Authentication auth){
         if(bindingResult.hasErrors()){
             System.out.println(bindingResult.getRawFieldValue("name"));
+            model.addAttribute("auth",auth);
             return "registerForm";
         }
         // dodawanie usera do DB
@@ -39,7 +42,8 @@ public class UserController {
     }
     // logowanie -> wyświetlenie widoku HTML i oddanie w zarządzanie WebSecurityConfig
     @GetMapping("/login")
-    public String login(){
+    public String login(Model model, Authentication auth){
+        model.addAttribute("auth",auth);
         return "loginForm";
     }
 }

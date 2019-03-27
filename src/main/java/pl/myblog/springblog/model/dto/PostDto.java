@@ -10,9 +10,9 @@ import javax.validation.constraints.NotNull;
 
 @Data
 public class PostDto {
-    @NotBlank
+    @NotBlank(message = "Title is required")
     private String title;
-    @NotBlank
+    @NotBlank(message = "Content is required")
     private String content;
     @Enumerated
     private PostCategory category;
