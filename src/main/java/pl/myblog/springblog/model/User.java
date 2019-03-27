@@ -21,17 +21,16 @@ public class User {
     @Id                                                 // PK
     @GeneratedValue(strategy = GenerationType.AUTO)     // AI
     private Long id;
-    @NotNull                                            // NN
+//    @NotNull                                            // NN
     private String name;
-    @NotNull
+//    @NotNull
     private String lastname;
-    @Email                                              // Email validation
-    @NotNull
+//    @Email                                              // Email validation
+//    @NotNull
     private String email;
-    @Length(min = 6)                                    // min 6 znaków
-    @Pattern(regexp = "([A-Z]+.*[0-9]+|[0-9]+.*[A-Z])") // co najmniej 1XCL 1XDIGIT
+//    @Length(min = 6)                                    // min 6 znaków
+//    @Pattern(regexp = "([A-Z]+.*[0-9]+|[0-9]+.*[A-Z])") // co najmniej 1XCL 1XDIGIT
     private String password;
-
     private Boolean active = true;
     private LocalDateTime registered_date = LocalDateTime.now();
 

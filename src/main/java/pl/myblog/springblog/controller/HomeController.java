@@ -58,8 +58,6 @@ public class HomeController {
     @GetMapping("/updatepost/{id}")
     public String updatePost(@PathVariable("id") Long id, Model model){
         List<PostCategory> categories = new ArrayList<>(Arrays.asList(PostCategory.values()));
-        System.out.println(categories.get(1).name());
-        System.out.println(categories.get(1).ordinal());
         Post post = postService.getPostById(id);
         model.addAttribute("post", post);
         model.addAttribute("categories", categories);
