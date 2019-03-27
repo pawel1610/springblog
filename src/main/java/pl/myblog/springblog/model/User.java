@@ -48,4 +48,8 @@ public class User {
     public void addPost(Post post){
         this.posts.add(post);
     }
+    // metoda dodająca rolę dla użytkownika
+    public void addRole(Role role){
+        this.roles.add(role);
+    }
 }
