@@ -88,8 +88,12 @@ public class HomeController {
     public String addPost(
             @ModelAttribute("post") @Valid PostDto postDto,
             BindingResult bindingResult,
-            Authentication auth){
+            Authentication auth,
+            Model model){
         if(bindingResult.hasErrors()){
+            List<PostCategory> categories =
+                    new ArrayList<>(Arrays.asList(PostCategory.values()));
+            model.addAttribute("categories", categories);
             return "addpostForm";
         }
         // z obiekut auth -> spring framerork sprawdzam dane autoryzacji
