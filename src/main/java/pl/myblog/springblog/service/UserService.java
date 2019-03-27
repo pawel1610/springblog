@@ -1,6 +1,8 @@
 package pl.myblog.springblog.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.myblog.springblog.model.User;
@@ -30,5 +32,20 @@ public class UserService {
         // przypisanie obiektu roli o ID 1 -> USER
         user.addRole(roleRepository.getOne((long)1));
         return userRepository.save(user);
+    }
+    // metoda sprawdzająca czy zalogowany użytkownik to administrator
+    public Boolean isAdmin(Authentication auth){
+        UserDetails principal = (UserDetails) auth.getPrincipal();
+        String email = principal.getUsername();
+        User user = userRepository.findByEmail(email);
+        if(user.getRoles().contains(roleRepository.getOne((long) 2))){
+            return true;
+        }
+        return false;
+    }
+    public User getUserById(Authentication auth){
+        UserDetails principal = (UserDetails) auth.getPrincipal();
+        String email = principal.getUsername();
+        return userRepository.findByEmail(email);
     }
 }

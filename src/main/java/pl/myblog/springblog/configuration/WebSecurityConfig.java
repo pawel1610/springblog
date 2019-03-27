@@ -46,7 +46,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // domyśly URL po poprawnym zalogowaniu
                 .defaultSuccessUrl("/")
                 // domyśly URL po błędnym logowaniu
-                .failureUrl("/errorLogin");
+                .failureUrl("/errorLogin")
+                .and()
+                .logout()
+                // adres do wylogowania
+                .logoutUrl("/logout")
+                // miejsce po wylogowaniu
+                .logoutSuccessUrl("/");
     }
 
     @Override
