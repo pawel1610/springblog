@@ -28,9 +28,9 @@ public class UserController {
     }
     // odbiór prarametrów przesłanych przez formularz metodą POST
     @PostMapping("/register")
-    public String register(@ModelAttribute @Valid UserDto userDto,
-                           BindingResult bindingResult){
+    public String register(@ModelAttribute("user") @Valid UserDto userDto, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
+            System.out.println(bindingResult.getRawFieldValue("name"));
             return "registerForm";
         }
         // dodawanie usera do DB
