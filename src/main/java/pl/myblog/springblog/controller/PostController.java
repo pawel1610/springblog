@@ -74,11 +74,21 @@ public class PostController {
             String name = userService.getUserById(auth).getName();
             commmentDto.setAuthor(name);
         }
-
         // obiekt comment do formularza
         model.addAttribute("comment", commmentDto);
         return "post";
     }
+    @GetMapping("/deletecomment/{id}")
+    public String deleteComment(@PathVariable("id") Long id){
+        // wyszukaj komentarz po id
+        Comment deletedComment = postService.getCommentById(id);
+        // zwróć obiekt posta dla usuwanego komntarza
+        Post post = deletedComment.getPost();
+        // usuwanie komentarza
+        postService.deleteCommentById(id);
+        return "redirect:/allposts/"+post.getId();
+    }
+
     @PostMapping("/addcomment/{id}")
     public String addComment(@PathVariable("id") Long id_post,
                              @ModelAttribute("comment") @Valid CommentDto commentDto,

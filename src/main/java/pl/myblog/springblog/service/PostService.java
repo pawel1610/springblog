@@ -87,4 +87,10 @@ public class PostService {
         // zapisz komentarz w DB
         return commentRepository.save(comment);
     }
+    public Comment getCommentById(Long id){
+        return commentRepository.getOne(id);
+    }
+    public void deleteCommentById(Long id){
+        commentRepository.deleteById(id);
+    }
 }
