@@ -87,10 +87,10 @@
   </article>
   <hr>
   <!--Dodawanie komentarzy-->
-  <div th:each="comment : ${comments}" class="post-preview">
-      <h1 th:text="${comment.getMessage()}" class="post-title"> comment </h1>
-      <p th:text="${'Posted by ' + comment.getAuthor()}" class="post-meta"> author </p>
-      <p th:text="${'Publication date ' + comment.getDate_added()}" class="post-meta"> date </p>
+  <div th:each="comment : ${comments}" class="container">
+      <p th:text="${comment.getMessage()}" class="post-meta"> comment </p>
+      <p th:text="${'Posted by ' + comment.getAuthor()}" style="font-size:60%;" class="post-meta"> author </p>
+      <p th:text="${'Publication date ' + comment.getDate_added()}" style="font-size:60%;" class="post-meta"> date </p>
     <!--<div th:if="${auth != null}" class="clearfix">-->
       <!--<a th:if="${isAdmin == true}" class="btn btn-primary float-right" th:href="@{'deletepost/' + ${post.getId()}}">Delete </a>-->
       <!--<a th:if="${isAdmin != true && post.getUser().getId() == user.getId()}" class="btn btn-primary float-right" th:href="@{'deletepost/' + ${post.getId()}}">Delete </a>-->
