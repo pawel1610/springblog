@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import pl.myblog.springblog.model.Comment;
 import pl.myblog.springblog.model.Post;
 import pl.myblog.springblog.model.PostCategory;
+import pl.myblog.springblog.model.dto.CommentDto;
 import pl.myblog.springblog.model.dto.PostDto;
 import pl.myblog.springblog.service.PostService;
 import pl.myblog.springblog.service.UserService;
@@ -63,9 +64,21 @@ public class PostController {
         System.out.println("Komentarze: "+ comments);
         model.addAttribute("comments", comments);
         // obiekt comment do formularza
-        model.addAttribute("comment", new Comment());
+        model.addAttribute("comment", new CommentDto());
         return "post";
     }
+    @PostMapping("/addcomment/{id}")
+    public String addComment(@PathVariable("id") Long id_post,
+                             @ModelAttribute("comment") @Valid CommentDto commentDto,
+                             BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "redirect:/allposts/"+id_post;
+        }
+        // zapis komentarza przez serwis
+        ...
+        return "redirect:/allposts/"+id_post;
+    }
+
     @GetMapping("/deletepost/{id}")
     public String deletePost(@PathVariable("id") Long id, Authentication auth, Model model){
         // usunięcie posta

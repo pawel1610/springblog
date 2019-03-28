@@ -112,7 +112,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
-                <form th:action="@{/addcomment}" th:method="post" th:object="${comment}" name="sentMessage"
+                <form th:action="@{'/addcomment/'+${post.getId()}}" th:method="post" th:object="${comment}" name="sentMessage"
                       id="contactForm" novalidate>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
