@@ -75,7 +75,7 @@ public class PostController {
             return "redirect:/allposts/"+id_post;
         }
         // zapis komentarza przez serwis
-        ...
+        postService.addCommnetToPost(id_post, commentDto);
         return "redirect:/allposts/"+id_post;
     }
 
