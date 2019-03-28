@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import pl.myblog.springblog.model.Comment;
 import pl.myblog.springblog.model.Post;
 import pl.myblog.springblog.model.PostCategory;
+import pl.myblog.springblog.model.User;
 import pl.myblog.springblog.model.dto.CommentDto;
 import pl.myblog.springblog.model.dto.PostDto;
 import pl.myblog.springblog.service.PostService;
@@ -59,6 +60,10 @@ public class PostController {
         Post post = postService.getPostById(id);
         model.addAttribute("post", post);
         model.addAttribute("auth",auth);
+        User user = userService.getUserById(auth);
+        String loggedName = user.getName();
+        model.addAttribute("loggedName",loggedName);
+        model.addAttribute("isAdmin", auth != null ? userService.isAdmin(auth) : false);
         // wypisz komentarze dla danego posta
         List<Comment> comments = postService.getCommentByPostId(id);
         System.out.println("Komentarze: "+ comments);
@@ -69,6 +74,7 @@ public class PostController {
             String name = userService.getUserById(auth).getName();
             commmentDto.setAuthor(name);
         }
+
         // obiekt comment do formularza
         model.addAttribute("comment", commmentDto);
         return "post";
