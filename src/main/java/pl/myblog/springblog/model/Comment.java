@@ -18,7 +18,7 @@ public class Comment {
 
     private LocalDateTime date_added = LocalDateTime.now();
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private Post post;
 
