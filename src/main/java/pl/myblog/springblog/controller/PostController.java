@@ -62,6 +62,8 @@ public class PostController {
         List<Comment> comments = postService.getCommentByPostId(id);
         System.out.println("Komentarze: "+ comments);
         model.addAttribute("comments", comments);
+        // obiekt comment do formularza
+        model.addAttribute("comment", new Comment());
         return "post";
     }
     @GetMapping("/deletepost/{id}")
