@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.myblog.springblog.model.Comment;
 import pl.myblog.springblog.model.Post;
 import pl.myblog.springblog.model.PostCategory;
 import pl.myblog.springblog.model.dto.PostDto;
@@ -23,11 +24,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-public class HomeController {
+public class PostController {
     PostService postService;
     UserService userService;
     @Autowired
-    public HomeController(PostService postService, UserService userService) {
+    public PostController(PostService postService, UserService userService) {
         this.postService = postService;
         this.userService = userService;
     }
@@ -57,6 +58,10 @@ public class HomeController {
         Post post = postService.getPostById(id);
         model.addAttribute("post", post);
         model.addAttribute("auth",auth);
+        // wypisz komentarze dla danego posta
+        List<Comment> comments = postService.getCommentByPostId(id);
+        System.out.println("Komentarze: "+ comments);
+        model.addAttribute("comments", comments);
         return "post";
     }
     @GetMapping("/deletepost/{id}")
@@ -118,11 +123,7 @@ public class HomeController {
     }
 
 
-    @GetMapping("/contact")
-    public String contact(Model model, Authentication auth){
-        model.addAttribute("auth",auth);
-        return "contact";
-    }
+
 
 
 

@@ -88,9 +88,9 @@
           <p th:text="${'Publication date ' + post.getDate_added()}" class="post-meta"> date </p>
           <div th:if="${auth != null}" class="clearfix">
             <a th:if="${isAdmin == true}" class="btn btn-primary float-right" th:href="@{'deletepost/' + ${post.getId()}}">Delete </a>
-            <a th:if="${post.getUser().getId() == user.getId()}" class="btn btn-primary float-right" th:href="@{'deletepost/' + ${post.getId()}}">Delete </a>
+            <a th:if="${isAdmin != true && post.getUser().getId() == user.getId()}" class="btn btn-primary float-right" th:href="@{'deletepost/' + ${post.getId()}}">Delete </a>
             <a th:if="${isAdmin == true}" class="btn btn-primary float-right" th:href="@{'updatepost/' + ${post.getId()}}">Update </a>
-            <a th:if="${post.getUser().getId() == user.getId()}" class="btn btn-primary float-right" th:href="@{'updatepost/' + ${post.getId()}}">Update </a>
+            <a th:if="${isAdmin != true && post.getUser().getId() == user.getId()}" class="btn btn-primary float-right" th:href="@{'updatepost/' + ${post.getId()}}">Update </a>
           </div>
           <hr>
         </div>
