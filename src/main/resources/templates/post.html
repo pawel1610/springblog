@@ -94,6 +94,7 @@
 <hr>
 <!--Dodawanie komentarzy-->
 <h1 align="center">Comments</h1>
+<p th:if="${comments.size()==0}" align="center" class="post-meta"> No comment added yet </p>
 <div th:each="comment : ${comments}" class="container">
     <p th:text="${comment.getMessage()}" class="post-meta"> comment </p>
     <p th:text="${'Posted by ' + comment.getAuthor()}" style="font-size:60%;" class="post-meta"> author </p>
