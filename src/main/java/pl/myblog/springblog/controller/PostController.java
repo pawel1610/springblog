@@ -63,16 +63,29 @@ public class PostController {
         List<Comment> comments = postService.getCommentByPostId(id);
         System.out.println("Komentarze: "+ comments);
         model.addAttribute("comments", comments);
+        // dla zalogowanych przypisane jest imię
+        CommentDto commmentDto = new CommentDto();
+        if(auth != null){
+            String name = userService.getUserById(auth).getName();
+            commmentDto.setAuthor(name);
+        }
         // obiekt comment do formularza
-        model.addAttribute("comment", new CommentDto());
+        model.addAttribute("comment", commmentDto);
         return "post";
     }
     @PostMapping("/addcomment/{id}")
     public String addComment(@PathVariable("id") Long id_post,
                              @ModelAttribute("comment") @Valid CommentDto commentDto,
-                             BindingResult bindingResult){
+                             BindingResult bindingResult,
+                             Model model,
+                             Authentication auth){
         if(bindingResult.hasErrors()){
-            return "redirect:/allposts/"+id_post;
+            model.addAttribute("auth",auth);
+            List<Comment> comments = postService.getCommentByPostId(id_post);
+            System.out.println("Komentarze: "+ comments);
+            model.addAttribute("comments", comments);
+            model.addAttribute("post",postService.getPostById(id_post));
+            return "post";
         }
         // zapis komentarza przez serwis
         postService.addCommnetToPost(id_post, commentDto);

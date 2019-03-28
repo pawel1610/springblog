@@ -24,7 +24,6 @@ public class Comment {
 
     public Comment() {
     }
-
     public Comment(String message, String author, Post post) {
         this.message = message;
         this.author = author;
