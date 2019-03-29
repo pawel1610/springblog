@@ -77,14 +77,13 @@
                         <h6 class="m-0 font-weight-bold text-primary">Contact table</h6>
                     </div>
                     <div class="card-body">
-                        <form th:action="@{/search}" th:method="post">
-                            <input th:type="text" th:name="pattern" placeholder="search">
-                            <button th:type="submit"> search</button>
+                        <form th:action="@{/search}" th:method="post" align="right">
+                            <input th:type="text" th:name="pattern" placeholder="search" class="form-control">
+                            <button th:type="submit" class="btn btn-primary float-left"> search </button>
                         </form>
                         <form th:action="@{/search}" th:method="post">
-                            <button th:type="submit"> refresh</button>
+                            <button th:type="submit" class="btn btn-primary"> refresh</button>
                         </form>
-
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>

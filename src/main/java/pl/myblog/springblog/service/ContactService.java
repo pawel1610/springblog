@@ -44,7 +44,10 @@ public class ContactService {
         contactRepository.save(contact);
     }
     public List<Contact> searchContacts(String pattern){
-        return contactRepository.findAllByNameLikeOrEmailLikeOrMessageLike(pattern, pattern, pattern);
+        return contactRepository.findAllByNameLikeOrEmailLikeOrMessageLike(pattern, pattern, pattern)
+                .stream()
+                .sorted(Comparator.comparing(Contact::getDate_added).reversed())
+                .collect(Collectors.toList());
     }
 
 }
