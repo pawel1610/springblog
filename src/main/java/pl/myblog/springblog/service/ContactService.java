@@ -43,5 +43,8 @@ public class ContactService {
         // zapisanie zmian
         contactRepository.save(contact);
     }
+    public List<Contact> searchContacts(String pattern){
+        return contactRepository.findAllByNameLikeOrEmailLikeOrMessageLike(pattern, pattern, pattern);
+    }
 
 }
