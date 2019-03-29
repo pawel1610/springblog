@@ -23,6 +23,7 @@ public class Contact {
     private String phone;
     @Type(type = "text")
     private String message;
+    private boolean flag = false;
 
     private LocalDateTime date_added = LocalDateTime.now();
 
