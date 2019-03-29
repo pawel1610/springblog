@@ -6,7 +6,10 @@ import org.springframework.stereotype.Service;
 import pl.myblog.springblog.model.Contact;
 import pl.myblog.springblog.model.dto.ContactDto;
 import pl.myblog.springblog.repository.ContactRepository;
+
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ContactService {
@@ -27,7 +30,10 @@ public class ContactService {
     }
 
     public List<Contact> getAllContacts(){
-        return contactRepository.findAll();
+        return contactRepository.findAll()
+                .stream()
+                .sorted(Comparator.comparing(Contact::getDate_added).reversed())
+                .collect(Collectors.toList());
     }
     public void changeFlag(Long id){
         // wyszukaj kontakt po id

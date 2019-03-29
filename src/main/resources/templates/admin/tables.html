@@ -98,14 +98,14 @@
                                     <td th:text="${c.getName()}">author</td>
                                     <td class="bg-primary text-dark font-weight-bold text-center">
                                         <form th:action="@{'/changeFlag/'+ ${c.getId()}}" method="post">
-                                            <input type="checkbox" th:checked="${c.isFlag()}">
+                                            <!--<input type="checkbox" th:checked="${c.isFlag()}">-->
                                             <button th:if="${c.isFlag() != true}"
                                                     class="btn-warning text-center text-dark font-weight-bold"
                                                     type="submit">Read
                                             </button>
                                             <button th:if="${c.isFlag() == true}"
                                                     class="btn-success text-center text-dark font-weight-bold"
-                                                    type="submit">Readed
+                                                    type="submit">Read
                                             </button>
                                         </form>
                                     </td>
