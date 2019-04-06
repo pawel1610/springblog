@@ -68,7 +68,6 @@ public class PostController {
         return "redirect:";
     }
 
-
     @GetMapping("/showPost")
     public String showPost(@RequestParam(name = "id") Long id, Model model) {
         model.addAttribute(postService.findByID(id));
