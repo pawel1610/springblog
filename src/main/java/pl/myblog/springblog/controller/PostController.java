@@ -60,6 +60,15 @@ public class PostController {
         return "index";
     }
 
+    @GetMapping("/delete/{id}")
+    public String deletePost(@PathVariable(name = "id") Long id, Model model) {
+        model.addAttribute("post", new Post());
+        Post post = postService.findByID(id);
+        postService.delete(post);
+        return "index";
+    }
+
+
     @GetMapping("/showPost")
     public String showPost(@RequestParam(name = "id") Long id, Model model) {
         model.addAttribute(postService.findByID(id));
@@ -67,7 +76,6 @@ public class PostController {
         return "postDetails";
 
     }
-
 
 
 
