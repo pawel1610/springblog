@@ -39,4 +39,7 @@ public class PostService {
         List<CategoryEnum> categoriesList = postRepository.getActiveCategories();
         return categoriesList;
     }
+    public void delete(Post post){
+        postRepository.delete(post);
+    }
 }
