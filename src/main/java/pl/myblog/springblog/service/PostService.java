@@ -35,7 +35,7 @@ public class PostService {
         Post post = postRepository.findById(id).get();
         return post;
     }
-    public List<CategoryEnum> getCategories() {
+    public List<CategoryEnum> getActiveCategories() {
         List<CategoryEnum> categoriesList = postRepository.getActiveCategories();
         return categoriesList;
     }
