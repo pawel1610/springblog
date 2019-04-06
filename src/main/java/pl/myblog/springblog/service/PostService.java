@@ -23,6 +23,12 @@ public class PostService {
         return postRepository.findAll();
     }
 
+    public void savePost(Post post, User user){
+        user.addPost(post);
+        post.setUser(user);
+        postRepository.save(post);
+    }
+
 
 
 }

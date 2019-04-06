@@ -5,6 +5,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import pl.myblog.springblog.model.Contact;
 import pl.myblog.springblog.model.Post;
 import pl.myblog.springblog.model.utiils.CategoryEnum;
 import pl.myblog.springblog.service.PostService;
@@ -53,6 +56,16 @@ public class PostController {
         return "addPostForm";
 
     }
+    @PostMapping("/savePost")
+    public String savedPost(@ModelAttribute Post post, Model model, Authentication auth){
+        model.addAttribute("isSave", true);
+        postService.savePost(post, userService.getUserById(auth));
+        return "index";
+    }
+
+
+
+
 
 
 

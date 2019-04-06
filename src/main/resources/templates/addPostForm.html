@@ -76,8 +76,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
-                <span th:if="${isSent}"> Message sent! </span>
-                <form th:action="@{/send}" method="post" th:object="${post}">
+                <span th:if="${isSave}"> Post saved! </span>
+                <form th:action="@{/savePost}" method="post" th:object="${post}">
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
                             <label>Tytul</label>
@@ -103,7 +103,7 @@
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
                             <label>Autor</label>
-                            <input th:name="user" type="textarea" class="form-control" th:placeholder="${post.user.getName()}" th:value="${post.user.getName()}">
+                            <input type="textarea" class="form-control" th:placeholder="${post.user.getName()}" th:value="${post.user.getName()}">
                         </div>
                     </div>
 
