@@ -57,7 +57,7 @@ public class PostController {
     public String savedPost(@ModelAttribute Post post, Model model, Authentication auth){
         model.addAttribute("isSave", true);
         postService.savePost(post, userService.getUserById(auth));
-        return "index";
+        return "redirect:";
     }
 
     @GetMapping("/delete")
@@ -65,7 +65,7 @@ public class PostController {
         Post post = postService.findByID(id);
         System.out.println(post);
         postService.delete(post);
-        return "index";
+        return "redirect:";
     }
 
 
