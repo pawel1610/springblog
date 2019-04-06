@@ -12,10 +12,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Data
+@NoArgsConstructor
 @Entity                                                 // tworzy tabelkę w DB
 public class User {
     @Id                                                 // PK
@@ -34,6 +34,14 @@ public class User {
     private Boolean active = true;
     private LocalDateTime registered_date = LocalDateTime.now();
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
+    List<Post> posts = new ArrayList<>();
+
+    public void addPost(Post post){
+        this.posts.add(post);
+    }
+
+
     @ManyToMany
     @JoinTable(
             name = "user_role",                                 // nawa tabelki N:M
@@ -45,5 +53,12 @@ public class User {
     // metoda dodająca rolę dla użytkownika
     public void addRole(Role role){
         this.roles.add(role);
+    }
+
+    public User(String name, String lastname, String email, String password) {
+        this.name = name;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
     }
 }

@@ -77,9 +77,40 @@
   <!-- Main Content -->
   <h1 th:align="center">Bag of categories</h1>
 
+  <p>
 
-  <p>...</p>
+    <!--<a th:align="center" href="/">SPORT</a>-->
+    <!--<a th:align="center" href="/">TECH</a>-->
+    <!--<a th:align="center" href="/">POLITICS</a></p>-->
+
   <h1 th:align="center">Recent posts</h1>
+
+  <table>
+    <tr>
+      <th>Tytuł</th>
+      <th>Data</th>
+      <th>Kategoria</th>
+      <th>Autor</th>
+      <th></th>
+    </tr>
+    <tr th:each="post : ${allPosts}">
+      <td>
+        <span th:text="${post.title}"></span>
+      </td>
+      <td>
+        <span th:text="${post.date}"></span>
+      </td>
+      <td>
+        <span th:text="${post.category}"></span>
+      </td>
+      <td>
+        <span th:text="${post.user}"></span>
+      </td>
+      <!--<td>-->
+        <!--<a th:href="@{editCourse(id=${course.id})}" method="get">edytuj</a>-->
+      <!--</td>-->
+    </tr>
+  </table>
   <p>...</p>
   <hr>
 

@@ -25,12 +25,18 @@ public class Post {
 
     @ManyToOne
     @JoinColumn
-    private User author;
+    private User user;
 
 
     @Enumerated(EnumType.STRING)
     private CategoryEnum category;
 
-    private LocalDateTime postDate;
+    private LocalDateTime postDate = LocalDateTime.now();
 
+    public Post(String title, String contetnt, User user, CategoryEnum category) {
+        this.title = title;
+        this.contetnt = contetnt;
+        this.user = user;
+        this.category = category;
+    }
 }

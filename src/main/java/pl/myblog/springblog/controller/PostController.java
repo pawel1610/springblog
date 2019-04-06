@@ -5,17 +5,18 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import pl.myblog.springblog.service.PostService;
 import pl.myblog.springblog.service.UserService;
 
 
 @Controller
 public class PostController {
-    UserService userService;
 
     @Autowired
-    public PostController(UserService userService) {
-        this.userService = userService;
-    }
+    PostService postService;
+
+    @Autowired
+    UserService userService;
 
     @GetMapping("/")
     public String home(Model model, Authentication auth) {
@@ -26,7 +27,11 @@ public class PostController {
         } else {
             model.addAttribute("isAdmin", false);
         }
+
+        model.addAttribute("allPosts",postService.getAllPost());
         return "index";
 
     }
+
+
 }

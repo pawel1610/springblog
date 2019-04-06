@@ -6,5 +6,5 @@ import pl.myblog.springblog.model.Post;
 
 
 @Repository
-public interface PostReposytory extends JpaRepository<Post,Long> {
+public interface PostRepository extends JpaRepository<Post,Long> {
 }
