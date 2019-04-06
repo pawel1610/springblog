@@ -7,6 +7,8 @@ import org.hibernate.annotations.Type;
 import pl.myblog.springblog.model.utiils.CategoryEnum;
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,9 +25,12 @@ public class Post {
     @Type(type = "text")
     private String content;
 
-    @ManyToOne
-    @JoinColumn
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "post")
+    List<Comment> commentList = new ArrayList<>();
 
 
     @Enumerated(EnumType.STRING)

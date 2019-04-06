@@ -18,7 +18,7 @@ public class Comment {
     private String author;
     private LocalDateTime commentDate = LocalDateTime.now();
 
-    @ManyToOne
-    @JoinColumn
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_id")
     private Post post;
 }

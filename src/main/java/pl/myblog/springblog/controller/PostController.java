@@ -60,10 +60,10 @@ public class PostController {
         return "index";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deletePost(@PathVariable(name = "id") Long id, Model model) {
-        model.addAttribute("post", new Post());
+    @GetMapping("/delete")
+    public String deletePost(@RequestParam(name = "id") Long id) {
         Post post = postService.findByID(id);
+        System.out.println(post);
         postService.delete(post);
         return "index";
     }

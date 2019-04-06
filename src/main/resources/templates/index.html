@@ -110,7 +110,7 @@
         <a sec:authorize="hasAuthority('admin')" th:href="@{editPost(id=${post.id})}" method="get">edit</a>
       </td>
       <td>
-        <a sec:authorize="hasAuthority('admin')" th:href="'/delete/'+${post.id}" method="get">delete</a>
+        <a sec:authorize="hasAuthority('admin')" th:href="@{delete(id=${post.id})}" method="get">delete</a>
       </td>
       <td>
         <a th:href="@{showPost(id=${post.id})}" method="get">show</a>
