@@ -79,30 +79,13 @@
 
 <h1 th:align="center">Post</h1>
 
-<table>
-    <tr>
-        <th>Tytuł</th>
-        <th>Data</th>
-        <th>Kategoria</th>
-        <th>Autor</th>
-        <th></th>
-    </tr>
-    <tr th:each="post : ${allPosts}">
-        <td>
-            <span th:text="${post.title}"></span>
-        </td>
-        <td>
-            <span th:text="${post.postDate}"></span>
-        </td>
-        <td>
-            <span th:text="${post.category}"></span>
-        </td>
-        <td>
-            <span th:text="${post.user.getName()}"></span>
-        </td>
-    </tr>
-</table>
-<hr>
+<p  th:text="${post.title}"> Tytuł </p>
+<p  th:text="${post.content}">  </p>
+<p  th:text="${post.user.getName()}">Autor</p>
+<p  th:text="${post.category}">Kategoria</p>
+
+
+
 
 <!-- Footer -->
 <footer>
