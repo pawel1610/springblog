@@ -13,5 +13,5 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<Post,Long> {
 
     @Query("SELECT distinct p.category FROM Post p")
-    List<CategoryEnum> getCategories();
+    List<CategoryEnum> getActiveCategories();
 }

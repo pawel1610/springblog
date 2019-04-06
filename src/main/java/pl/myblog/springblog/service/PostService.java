@@ -33,13 +33,13 @@ public class PostService {
 
     public Post findByID(Long id){
         Post post = postRepository.findById(id).get();
-        return post;
-    }
+        return post;   }
 
 
 
-    public List<Post> getCategories() {
-        List<Post> categoriesList = postRepository.getCategories();
+
+    public List<CategoryEnum> getActiveCategories() {
+        List<CategoryEnum> categoriesList = postRepository.getActiveCategories();
         return categoriesList;
     }
 }
