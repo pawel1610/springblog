@@ -5,6 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.myblog.springblog.model.Comment;
 import pl.myblog.springblog.model.Contact;
 import pl.myblog.springblog.model.Post;
 import pl.myblog.springblog.model.utiils.CategoryEnum;
@@ -71,7 +72,11 @@ public class PostController {
 
     @GetMapping("/showPost")
     public String showPost(@RequestParam(name = "id") Long id, Model model) {
-        model.addAttribute(postService.findByID(id));
+        Post post = postService.findByID(id);
+        Comment comment = new Comment();
+        post.addCommentToPost(comment);
+        model.addAttribute(comment);
+        model.addAttribute(post);
         System.out.println(postService.findByID(id));
         return "postDetails";
 

@@ -32,6 +32,10 @@ public class Post {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "post")
     List<Comment> commentList = new ArrayList<>();
 
+    public void addCommentToPost(Comment comment){
+        this.commentList.add(comment);
+    }
+
 
     @Enumerated(EnumType.STRING)
     private CategoryEnum category;
