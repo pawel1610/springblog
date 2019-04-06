@@ -77,11 +77,11 @@
   <!-- Main Content -->
   <h1 th:align="center">Bag of categories</h1>
 
-  <p>
-
-    <a th:align="center" href="/">SPORT</a>
-    <a th:align="center" href="/">TECH</a>
-    <a th:align="center" href="/">POLITICS</a></p>
+  <ul>
+    <li th:each="categoryEnum : ${categoriesList}">
+      <a th:text="${categoryEnum}"></a>
+    </li>
+  </ul>
 
   <h1 th:align="center">Recent posts</h1>
 

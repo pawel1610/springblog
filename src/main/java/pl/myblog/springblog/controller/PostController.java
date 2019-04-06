@@ -32,6 +32,7 @@ public class PostController {
     @GetMapping("/")
     public String home(Model model, Authentication auth) {
         model.addAttribute("auth", auth);
+        model.addAttribute("categoriesList", postService.getCategories());
         if (auth != null) {
             model.addAttribute("isAdmin", userService.isAdmin(auth));
             model.addAttribute("user", userService.getUserById(auth));
