@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th=”http://www.thymeleaf.org”>
+<html xmlns:th=”http://www.thymeleaf.org” xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
 
@@ -106,12 +106,17 @@
       <td>
         <span th:text="${post.user.getName()}"></span>
       </td>
-      <!--<td>-->
-        <!--<a th:href="@{editCourse(id=${course.id})}" method="get">edytuj</a>-->
-      <!--</td>-->
+      <td>
+        <a sec:authorize="hasAuthority('admin')" th:href="@{editPost(id=${post.id})}" method="get">edit</a>
+      </td>
+      <td>
+        <a sec:authorize="hasAuthority('admin')" th:href="@{deletePost(id=${post.id})}" method="get">delete</a>
+      </td>
+      <td>
+        <a th:href="@{showPost(id=${post.id})}" method="get">show</a>
+      </td>
     </tr>
   </table>
-  <p>...</p>
   <hr>
 
   <!-- Footer -->
