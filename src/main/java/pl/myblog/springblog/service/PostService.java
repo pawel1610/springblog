@@ -1,6 +1,7 @@
 package pl.myblog.springblog.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import pl.myblog.springblog.model.Post;
 import pl.myblog.springblog.model.User;
@@ -29,6 +30,8 @@ public class PostService {
         postRepository.save(post);
     }
 
-
-
+    public List<Post> getCategories() {
+        List<Post> categoriesList = postRepository.getCategories();
+        return categoriesList;
+    }
 }
