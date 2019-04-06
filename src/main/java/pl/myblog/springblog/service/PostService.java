@@ -33,12 +33,9 @@ public class PostService {
 
     public Post findByID(Long id){
         Post post = postRepository.findById(id).get();
-        return post;   }
-
-
-
-
-    public List<CategoryEnum> getActiveCategories() {
+        return post;
+    }
+    public List<CategoryEnum> getCategories() {
         List<CategoryEnum> categoriesList = postRepository.getActiveCategories();
         return categoriesList;
     }
