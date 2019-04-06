@@ -21,7 +21,7 @@ public class Post {
     private String title;
 
     @Type(type = "text")
-    private String contetnt;
+    private String content;
 
     @ManyToOne
     @JoinColumn
@@ -33,9 +33,9 @@ public class Post {
 
     private LocalDateTime postDate = LocalDateTime.now();
 
-    public Post(String title, String contetnt, User user, CategoryEnum category) {
+    public Post(String title, String content, User user, CategoryEnum category) {
         this.title = title;
-        this.contetnt = contetnt;
+        this.content = content;
         this.user = user;
         this.category = category;
     }

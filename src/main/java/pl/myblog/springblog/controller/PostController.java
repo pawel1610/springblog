@@ -5,8 +5,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import pl.myblog.springblog.model.Post;
+import pl.myblog.springblog.model.utiils.CategoryEnum;
 import pl.myblog.springblog.service.PostService;
 import pl.myblog.springblog.service.UserService;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.EnumSet;
+import java.util.List;
 
 
 @Controller
@@ -17,6 +24,7 @@ public class PostController {
 
     @Autowired
     UserService userService;
+
 
     @GetMapping("/")
     public String home(Model model, Authentication auth) {
@@ -32,6 +40,22 @@ public class PostController {
         return "index";
 
     }
+
+    @GetMapping("/addpost")
+    public String addPost(Model model, Authentication auth){
+        Post newPost = new Post();
+        newPost.setUser(userService.getUserById(auth));
+        List<CategoryEnum> categories = Arrays.asList(CategoryEnum.values());
+        model.addAttribute("categories", categories);
+        System.out.println(categories);
+        model.addAttribute("auth",auth);
+        model.addAttribute(newPost);
+        return "addPostForm";
+
+    }
+
+
+
 
 
 }
