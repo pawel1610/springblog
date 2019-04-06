@@ -31,7 +31,6 @@ public class PostService {
         postRepository.save(post);
     }
 
-<<<<<<< HEAD
     public Post findByID(Long id){
         Post post = postRepository.findById(id).get();
         return post;
@@ -39,10 +38,8 @@ public class PostService {
 
 
 
-=======
     public List<Post> getCategories() {
         List<Post> categoriesList = postRepository.getCategories();
         return categoriesList;
     }
->>>>>>> 423efb750b3d1af72faa3562ada064140276e51f
 }
