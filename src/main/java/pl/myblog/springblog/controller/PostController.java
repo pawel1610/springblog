@@ -40,6 +40,7 @@ public class PostController {
         }
 
         model.addAttribute("allPosts",postService.getAllPost());
+        System.out.println(postService.getAllPost());
         return "index";
 
     }
