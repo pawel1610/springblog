@@ -21,7 +21,8 @@ public class PostService {
     UserRepository userRepository;
 
     public List<Post> getAllPost(){
-        return postRepository.findAll();
+        List<Post> allPosts =  postRepository.findAll();
+        return allPosts;
     }
 
     public void savePost(Post post, User user){

@@ -98,13 +98,13 @@
         <span th:text="${post.title}"></span>
       </td>
       <td>
-        <span th:text="${post.date}"></span>
+        <span th:text="${post.postDate}"></span>
       </td>
       <td>
         <span th:text="${post.category}"></span>
       </td>
       <td>
-        <span th:text="${post.user}"></span>
+        <span th:text="${post.user.getName()}"></span>
       </td>
       <!--<td>-->
         <!--<a th:href="@{editCourse(id=${course.id})}" method="get">edytuj</a>-->
