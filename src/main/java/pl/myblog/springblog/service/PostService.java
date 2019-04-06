@@ -35,11 +35,8 @@ public class PostService {
         Post post = postRepository.findById(id).get();
         return post;
     }
-
-
-
-    public List<Post> getCategories() {
-        List<Post> categoriesList = postRepository.getCategories();
+    public List<CategoryEnum> getCategories() {
+        List<CategoryEnum> categoriesList = postRepository.getCategories();
         return categoriesList;
     }
 }
