@@ -41,13 +41,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id")) // nazwa kolumny 2
     private Set<Role> roles = new HashSet<>();                          // zbiór ról
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
-    private Set<Post> posts = new HashSet<>();
 
-    // metoda dodająca posta dla użytkownika
-    public void addPost(Post post){
-        this.posts.add(post);
-    }
     // metoda dodająca rolę dla użytkownika
     public void addRole(Role role){
         this.roles.add(role);

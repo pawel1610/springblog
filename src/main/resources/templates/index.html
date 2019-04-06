@@ -75,34 +75,10 @@
   </header>
 
   <!-- Main Content -->
-  <h1>Bag of categories</h1>
-  <div th:each="tag : ${tags}">
-    <a th:href="@{/}" th:text="${tag.name()}" class="btn btn-primary float-right">tag</a>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <div th:each="post : ${posts}" class="post-preview">
-          <a th:href="@{'allposts/' + ${post.getId()}}">
-            <h2 th:text="${post.getTitle()}" class="post-title">
-              title
-            </h2>
-          </a>
-          <p th:text="${'Posted by ' + post.getUser().getName()}" class="post-meta"> author </p>
-          <p th:text="${'Publication date ' + post.getDate_added()}" class="post-meta"> date </p>
-          <div th:if="${auth != null}" class="clearfix">
-            <a th:if="${isAdmin == true}" class="btn btn-primary float-right" th:href="@{'deletepost/' + ${post.getId()}}">Delete </a>
-            <a th:if="${isAdmin != true && post.getUser().getId() == user.getId()}" class="btn btn-primary float-right" th:href="@{'deletepost/' + ${post.getId()}}">Delete </a>
-            <a th:if="${isAdmin == true}" class="btn btn-primary float-right" th:href="@{'updatepost/' + ${post.getId()}}">Update </a>
-            <a th:if="${isAdmin != true && post.getUser().getId() == user.getId()}" class="btn btn-primary float-right" th:href="@{'updatepost/' + ${post.getId()}}">Update </a>
-          </div>
-          <hr>
-        </div>
-        <!-- Pager -->
-      </div>
-    </div>
-  </div>
-
+  <h1 th:align="center">Bag of categories</h1>
+  <p>...</p>
+  <h1 th:align="center">Recent posts</h1>
+  <p>...</p>
   <hr>
 
   <!-- Footer -->
