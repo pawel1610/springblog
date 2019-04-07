@@ -88,11 +88,14 @@
 <h2>Category</h2>
 <p  th:text="${post.category}"></p>
 
+<h2>Comments</h2>
+
 <table>
     <tr>
         <th>Author</th>
         <th>Comment Date</th>
         <th>Message</th>
+        <th></th>
     </tr>
     <tr th:each="comment : ${commentList}">
         <td>
@@ -104,23 +107,41 @@
         <td>
             <span th:text="${comment.message}"></span>
         </td>
+        <td>
+            <a th:href="@{deleteComment(id=${comment.id})}" method="get">DELETE</a>
+        </td>
     </tr>
+
+
 </table>
 
+<h2>Add comment...</h2>
+
+<form th:action=" @{'/saveComment/'+${post.id}}" method="post" th:object="${comment}">
+
+    <p th:errors="*" class="error"></p>
+
+    <div class="control-group">
+        <div class="form-group floating-label-form-group controls">
+            <label>Author</label>
+            <input th:if="${auth != null}" th:name="author" type="text" class="form-control" th:placeholder="${auth.getPrincipal().getUsername()}" th:value="${auth.getPrincipal().getUsername()}">
+            <input th:if="${auth == null}" th:name="author" type="text" class="form-control" placeholder="author..." >
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="form-group floating-label-form-group controls">
+            <label>Message</label>
+            <textarea rows="5" th:name="message" type="message" class="form-control" placeholder="Message" ></textarea>
+        </div>
+    </div>
+    <br>
+    <div id="success"></div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" id="sendMessageButton">send</button>
+    </div>
+</form>
 
 
-
-<!--<ul>-->
-    <!--<li th:each="comment : ${post.commentList}">-->
-        <!--<a th:text="${post.comment.message}"></a>-->
-    <!--</li>-->
-<!--</ul>-->
-
-<!--<p > Dodaj komentarz</p>-->
-<!--<span th:text="${comment.message}" ></span>-->
-
-
-<!-- Footer -->
 <footer>
     <div class="container">
         <div class="row">

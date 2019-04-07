@@ -17,4 +17,17 @@ public class CommentService {
         List <Comment> commentListByPostId = commentRpository.findAllByPost_id(id);
         return commentListByPostId;
     }
+
+    public void saveComment (Comment comment){
+        commentRpository.save(comment);
+    }
+
+    public  Comment findById(Long id){
+        Comment comment = commentRpository.findById(id).get();
+        return comment;
+    }
+
+    public void delete(Comment comment){
+        commentRpository.delete(comment);
+    }
 }

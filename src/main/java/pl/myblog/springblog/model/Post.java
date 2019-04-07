@@ -28,8 +28,7 @@ public class Post {
     @Type(type = "text")
     private String content;
 
-//    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
