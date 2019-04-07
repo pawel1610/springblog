@@ -11,15 +11,15 @@ public class ErrorPageController implements ErrorController {
     public String getErrorPath() {
         return "/error";
     }
-    @GetMapping("/error")
-    public String errorPage(Model model){
-        model.addAttribute("info", "Nie ma takiego adresu w naszej domenie.");
-        return "errorPage";
-    }
-    @GetMapping("/errorLogin")
-    public String errorLogin(Model model){
-        model.addAttribute("info", "Błąd logowania!");
-        return "errorPage";
-    }
+//    @GetMapping("/error")
+//    public String errorPage(Model model){
+//        model.addAttribute("info", "Nie ma takiego adresu w naszej domenie.");
+//        return "errorPage";
+//    }
+//    @GetMapping("/errorLogin")
+//    public String errorLogin(Model model){
+//        model.addAttribute("info", "Błąd logowania!");
+//        return "errorPage";
+//    }
 
 }

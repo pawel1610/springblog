@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th=”http://www.thymeleaf.org”>
+<html xmlns:th=”http://www.thymeleaf.org” xmlns:sec="http://thymeleaf.org/extras/spring-security">
 
 <head>
 
@@ -75,10 +75,53 @@
   </header>
 
   <!-- Main Content -->
-  <h1 th:align="center">Bag of categories</h1>
-  <p>...</p>
-  <h1 th:align="center">Recent posts</h1>
-  <p>...</p>
+  <h2 th:align="center">Bag of categories</h2>
+
+  <ul >
+    <li th:each="categoryEnum : ${categoriesList}">
+      <a th:text="${categoryEnum}"></a>
+    </li>
+  </ul>
+
+  <h2 th:align="center">Recent posts</h2>
+
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Date</th>
+      <th>Category</th>
+      <th>Author</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr th:each="post : ${postsByDate}">
+      <td>
+        <span th:text="${post.title}"></span>
+      </td>
+      <td>
+        <span th:text="${post.postDate}"></span>
+      </td>
+      <td>
+        <span th:text="${post.category}"></span>
+      </td>
+      <td>
+        <span th:text="${post.user.getName()}"></span>
+      </td>
+      <td>
+        <a th:href="@{showPost(id=${post.id})}" method="get">SHOW</a>
+      </td>
+      <td>
+        <a th:if="${post.user.getId()} == ${loggedId}" th:href="@{editPost(id=${post.id})}" method="get">EDIT</a>
+        <a th:if="${isAdmin}" th:href="@{editPost(id=${post.id})}" method="get">EDIT</a>
+      </td>
+      <td>
+        <a th:if="${post.user.getId()} == ${loggedId}" th:href="@{delete(id=${post.id})}" method="get">DELETE</a>
+        <a th:if="${isAdmin}" th:href="@{delete(id=${post.id})}" method="get">DELETE</a>
+      </td>
+
+    </tr>
+  </table>
   <hr>
 
   <!-- Footer -->
