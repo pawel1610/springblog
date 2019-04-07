@@ -78,14 +78,14 @@
             <div class="col-lg-8 col-md-10 mx-auto">
                 <span th:if="${isSent}"> Message sent! </span>
                 <form th:action="@{/send}" method="post" th:object="${contact}">
+
+                    <p th:errors="*" class="error"></p>
+
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
                             <label>Email</label>
                             <input th:if="${auth != null}" th:name="email" type="email" class="form-control" th:placeholder="${auth.getPrincipal().getUsername()}" th:value="${auth.getPrincipal().getUsername()}">
                             <input th:if="${auth == null}" th:name="email" type="email" class="form-control" placeholder="Email" >
-
-
-
                         </div>
                     </div>
                     <div class="control-group">

@@ -15,4 +15,6 @@ public interface PostRepository extends JpaRepository<Post,Long> {
     @Query("SELECT distinct p.category FROM Post p")
     List<CategoryEnum> getActiveCategories();
 
+    @Query("SELECT p FROM Post p order by postDate DESC")
+    List<Post> getPostsOrderByDate();
 }

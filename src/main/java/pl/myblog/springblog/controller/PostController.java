@@ -31,13 +31,15 @@ public class PostController {
         model.addAttribute("categoriesList", postService.getActiveCategories());
         if (auth != null) {
             model.addAttribute("isAdmin", userService.isAdmin(auth));
+            System.out.println(userService.isAdmin(auth));
             model.addAttribute("user", userService.getUserById(auth));
+            model.addAttribute("loggedId", userService.getUserByEmail(auth).getId());
+
         } else {
             model.addAttribute("isAdmin", false);
         }
 
-        model.addAttribute("allPosts",postService.getAllPost());
-        System.out.println(postService.getAllPost());
+        model.addAttribute("postsByDate",postService.getPostsOrderByDate());
         return "index";
 
     }
@@ -64,7 +66,6 @@ public class PostController {
     @GetMapping("/delete")
     public String deletePost(@RequestParam(name = "id") Long id) {
         Post post = postService.findByID(id);
-        System.out.println(post);
         postService.delete(post);
         return "redirect:";
     }
@@ -78,8 +79,17 @@ public class PostController {
         model.addAttribute(post);
         System.out.println(postService.findByID(id));
         return "postDetails";
+    }
+    @GetMapping("/editPost")
+    public String editPost(@RequestParam(name = "id") Long id, Model model){
+        Post post = postService.findByID(id);
+        List<CategoryEnum> categories = Arrays.asList(CategoryEnum.values());
+        model.addAttribute("categories", categories);
+        model.addAttribute("post", post);
+        return "addPostForm";
 
     }
+
 
 
 

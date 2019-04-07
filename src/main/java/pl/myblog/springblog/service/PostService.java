@@ -42,4 +42,8 @@ public class PostService {
     public void delete(Post post){
         postRepository.delete(post);
     }
+    public List<Post> getPostsOrderByDate(){
+        List<Post> postsByDate =  postRepository.getPostsOrderByDate();
+        return postsByDate;
+    }
 }

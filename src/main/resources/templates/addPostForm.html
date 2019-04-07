@@ -81,13 +81,13 @@
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
                             <label>Tytul</label>
-                            <input th:name="title" type="text" class="form-control" placeholder="Tytuł">
+                            <input th:field="*{title}" th:name="title" type="text" class="form-control" placeholder="Tytuł">
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
                             <label>Tytul</label>
-                            <input th:name="content" type="text" class="form-control" placeholder="Tresc">
+                            <input th:field="*{content}" th:name="content" type="text" class="form-control" placeholder="Tresc">
                         </div>
                     </div>
                     <div class="control-group">
@@ -95,9 +95,8 @@
                             <label>Kategoria</label>
                             <select th:name="category">
                                 <option th:each="categoryEnum : ${categories}" th:value="${categoryEnum}" th:text="${categoryEnum}"></option>
-
                             </select><br>
-                            <!--<input th:name="category" type="text" class="form-control" placeholder="Kategoria">-->
+                        <!--<input th:name="category" type="text" class="form-control" placeholder="Kategoria">-->
                         <!--</div>-->
                     </div>
                     <div class="control-group">
