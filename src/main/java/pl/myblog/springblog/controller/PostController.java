@@ -9,6 +9,7 @@ import pl.myblog.springblog.model.Comment;
 import pl.myblog.springblog.model.Contact;
 import pl.myblog.springblog.model.Post;
 import pl.myblog.springblog.model.utiils.CategoryEnum;
+import pl.myblog.springblog.service.CommentService;
 import pl.myblog.springblog.service.PostService;
 import pl.myblog.springblog.service.UserService;
 
@@ -23,6 +24,9 @@ public class PostController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    CommentService commentService;
 
 
     @GetMapping("/")
@@ -79,10 +83,10 @@ public class PostController {
     public String showPost(@RequestParam(name = "id") Long id, Model model) {
         Post post = postService.findByID(id);
         Comment comment = new Comment();
-        post.addCommentToPost(comment);
         model.addAttribute(comment);
         model.addAttribute(post);
-        System.out.println(postService.findByID(id));
+        model.addAttribute("commentList", commentService.getCommentsByPostId(id));
+
         return "postDetails";
     }
     @GetMapping("/editPost")

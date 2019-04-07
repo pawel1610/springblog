@@ -33,12 +33,12 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "post")
-    List<Comment> commentList = new ArrayList<>();
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "post")
+//    List<Comment> commentList = new ArrayList<>();
 
-    public void addCommentToPost(Comment comment){
-        this.commentList.add(comment);
-    }
+//    public void addCommentToPost(Comment comment){
+//        this.commentList.add(comment);
+//    }
 
 
     @Enumerated(EnumType.STRING)
