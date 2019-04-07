@@ -14,7 +14,7 @@ public class CommentService {
     CommentRpository commentRpository;
 
     public List<Comment> getCommentsByPostId(Long id){
-        List <Comment> commentListByPostId = commentRpository.findAllByPost(id);
+        List <Comment> commentListByPostId = commentRpository.findAllByPost_id(id);
         return commentListByPostId;
     }
 }
