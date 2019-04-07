@@ -6,6 +6,7 @@ import pl.myblog.springblog.service.CommentService;
 
 @Controller
 public class CommentController {
+
     @Autowired
     CommentService commentService;
 }

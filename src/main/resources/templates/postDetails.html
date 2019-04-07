@@ -79,10 +79,33 @@
 
 <h1 th:align="center">Post</h1>
 
-<p  th:text="${post.title}"> Tytuł </p>
-<p  th:text="${post.content}">  </p>
-<p  th:text="${post.user.getName()}">Autor</p>
-<p  th:text="${post.category}">Kategoria</p>
+<h2>Category</h2>
+<p  th:text="${post.title}"></p>
+<h2>Content</h2>
+<p  th:text="${post.content}"></p>
+<h2>Author</h2>
+<p  th:text="${post.user.getName()}"></p>
+<h2>Category</h2>
+<p  th:text="${post.category}"></p>
+
+<table>
+    <tr>
+        <th>Author</th>
+        <th>Comment Date</th>
+        <th>Message</th>
+    </tr>
+    <tr th:each="comment : ${commentList}">
+        <td>
+            <span th:text="${comment.author}"></span>
+        </td>
+        <td>
+            <span th:text="${comment.commentDate}"></span>
+        </td>
+        <td>
+            <span th:text="${comment.message}"></span>
+        </td>
+    </tr>
+</table>
 
 
 

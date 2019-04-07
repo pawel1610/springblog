@@ -85,7 +85,7 @@ public class PostController {
         Comment comment = new Comment();
         model.addAttribute(comment);
         model.addAttribute(post);
-        model.addAttribute("commentList", commentService.getCommentsByPostId(id));
+//        model.addAttribute("commentList", commentService.getCommentsByPostId(id));
 
         return "postDetails";
     }
