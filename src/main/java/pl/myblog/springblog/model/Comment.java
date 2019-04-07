@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
 @Data
@@ -15,8 +16,9 @@ public class Comment {
     private Long id;
 
     @Type(type = "text")
+    @NotEmpty
     private String message;
-
+    @NotEmpty
     private String author;
 
     private LocalDateTime commentDate = LocalDateTime.now();

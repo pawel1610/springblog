@@ -80,9 +80,11 @@ public class PostController {
     }
 
     @GetMapping("/showPost")
-    public String showPost(@RequestParam(name = "id") Long id, Model model) {
+    public String showPost(@RequestParam(name = "id") Long id, Model model, Authentication auth) {
+
         Post post = postService.findByID(id);
         Comment comment = new Comment();
+        model.addAttribute("auth",auth);
         model.addAttribute(comment);
         model.addAttribute(post);
         model.addAttribute("commentList", commentService.getCommentsByPostId(id));

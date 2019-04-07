@@ -78,6 +78,7 @@
             <div class="col-lg-8 col-md-10 mx-auto">
                 <span th:if="${isSent}"> Message sent! </span>
                 <form th:action="@{/send}" method="post" th:object="${contact}">
+                    <p th:errors="*" class="error" th:errorclass="form-field-error"></p>
 
                     <p th:errors="*" class="error"></p>
 
