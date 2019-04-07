@@ -80,6 +80,8 @@
                 <form th:action="@{/savePost}" method="post" th:object="${post}">
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
+
+                            <input id="id" type="hidden" th:field="*{id}">
                             <label>Tytul</label>
                             <input th:field="*{title}" th:name="title" type="text" class="form-control" placeholder="Tytuł">
                         </div>

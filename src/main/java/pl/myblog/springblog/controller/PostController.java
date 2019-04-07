@@ -59,7 +59,12 @@ public class PostController {
     @PostMapping("/savePost")
     public String savedPost(@ModelAttribute Post post, Model model, Authentication auth){
         model.addAttribute("isSave", true);
-        postService.savePost(post, userService.getUserById(auth));
+        if(post.getId()!= null){
+            postService.saveEditedPost(post,userService.getUserById(auth));
+        }
+        else{
+        postService.savePost(post, userService.getUserById(auth));}
+
         return "redirect:";
     }
 

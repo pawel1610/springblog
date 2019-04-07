@@ -31,6 +31,11 @@ public class PostService {
         postRepository.save(post);
     }
 
+    public void saveEditedPost(Post post,User user){
+        post.setUser(user);
+        postRepository.save(post);
+    }
+
     public Post findByID(Long id){
         Post post = postRepository.findById(id).get();
         return post;
